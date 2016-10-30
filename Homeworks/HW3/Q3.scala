@@ -11,6 +11,7 @@ object Q3{
 	def doWork(l: List[Int]): Int={
 		var orig: List[Int]=l
 		var sum: Int=0
+		var s: Int=0
 		Console.println("Enter the number of threads: ")
 		var numThreads: Int=Console.readInt
 		var t: List[Thread]=List()
@@ -20,9 +21,7 @@ object Q3{
 			var workOn: List[Int]=orig.take(lengthThread)
 			val thread=new Thread(new Runnable {
 				override def run(){
-					this.synchronized{
-						sum=sum+sumList(workOn)
-						}
+					sum=sum+sumList(workOn)
 				}
 			})
 			t=t:::List(thread)
@@ -33,5 +32,4 @@ object Q3{
 		}
 		sum
 	}
-	Console.println("sum is "+doWork(List(1,2,3,4,5,6,7,8,9,10)))
 }
